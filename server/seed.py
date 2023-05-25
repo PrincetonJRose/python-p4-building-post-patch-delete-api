@@ -71,6 +71,7 @@ with app.app_context():
     User.query.delete()
     Game.query.delete()
 
+    print( "Creating Users..." )
     users = []
     for i in range(100):
         u = User(name=fake.name(),)
@@ -78,6 +79,7 @@ with app.app_context():
 
     db.session.add_all(users)
 
+    print( 'Creating Games...' )
     games = []
     for i in range(100):
         g = Game(
@@ -90,6 +92,7 @@ with app.app_context():
 
     db.session.add_all(games)
 
+    print( 'Creating Reviews...' )
     reviews = []
     for u in users:
         for i in range(randint(1, 10)):
@@ -107,4 +110,6 @@ with app.app_context():
         g.review = r
         reviews.remove(r)
 
+    'Commit changes to database...'
     db.session.commit()
+    'Database seeded!!! 🌱'
